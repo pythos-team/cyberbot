@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="cyberbot",
-    version="0.1.1",
+    version="0.1.2",
     description="CyberBot: a Flask companion that keeps routes alive and adds basic cyber-aware helpers.",
     author="Alex Austin",
     packages=find_packages(),

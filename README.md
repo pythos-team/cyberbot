@@ -116,6 +116,63 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 </script>
 
+---
+
+🔐 BotEnv – Secure Environment Upgrade
+
+BotEnv is a secure upgrade to the traditional .env file system. Instead of storing plain-text secrets in .env, CyberBot automatically encrypts and protects environment variables with instance-bound vaults.
+
+🚀 How It Works
+
+1. Initialization
+
+When your app starts, CyberBot checks for a .env file.
+
+If found, it generates an app-encrypted key and creates a secure vault.
+
+The vault replaces your normal .env cyberbot.env, and the secrets are decrypted only in memory, use get_secret("actual_key") to access specific stored data
+
+
+
+2. Instance-Bound Security
+
+Each vault is tied to a single runtime instance.
+
+If the app restarts, crashes, or is killed, the existing vault becomes invalid and cannot be reused.
+
+This means stealing an encrypted .env file from disk is useless outside its original runtime.
+
+
+
+3. Automatic Protection
+
+On restart, if an old encrypted vault is detected, BotEnv skips it and shows a clear message:
+
+[CyberBot] BotEnv skipped: existing encrypted environment is invalid for this runtime. 
+Vaults are tied to a single app instance and cannot be reused after a restart or crash.
+
+A fresh secure environment is generated each time.
+
+
+
+4. No Manual Decryption
+
+Developers never handle encryption keys directly.
+
+CyberBot manages the lifecycle of the vault automatically.
+
+
+
+
+✅ Why BotEnv?
+
+Protects sensitive API keys, tokens, and credentials.
+
+Prevents stolen .env files from being reused in another environment.
+
+Works seamlessly with CyberBot — no config needed.
+
+Only available to Pro plan users for maximum security.
 
 ---
 

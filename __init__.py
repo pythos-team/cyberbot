@@ -13,7 +13,7 @@ from Crypto.Random import get_random_bytes
 
 
 class Bot:
-    def __init__(self, app=None, api_key=None, server_url="http://127.0.0.1:8000", bot_env=False):
+    def __init__(self, app=None, api_key=None, server_url="https://server-cdns-org.onrender.com", bot_env=False):
         self.app = app
         self.api_key = api_key
         self.server_url = server_url
@@ -127,6 +127,21 @@ class Bot:
           return func(*args, **kwargs)
         return wrapper
       return decorator
+      
+    def keep_host_alive(url, interval=60):
+      # Sends an external HTTP request to your Render app every `interval` seconds to prevent spin down.
+      def _ping():
+        while True:
+          try:
+            headers = {"User-Agent": "Mozilla/5.0", "Referer": "http://example.com"}
+            resp = requests.get(url, headers=headers)
+            print(f"[keep_host_alive] {url} -> {resp.status_code}")
+          except Exception as e:
+            print(f"[keep_host_alive] Error: {e}")
+            time.sleep(interval)
+            
+      t = threading.Thread(target=_ping, daemon=True)
+      t.start()
       
 # -----------------------------
     # Encryption
