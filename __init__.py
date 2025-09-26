@@ -128,7 +128,7 @@ class Bot:
         return wrapper
       return decorator
       
-    def keep_host_alive(url, interval=60):
+    def keep_host_alive(self, url, interval=60):
       # Sends an external HTTP request to your Render app every `interval` seconds to prevent spin down.
       def _ping():
         while True:
